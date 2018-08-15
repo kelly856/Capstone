@@ -1,0 +1,42 @@
+﻿@model ClothingElaine.Models.UserViewModel
+@using ClothingElaine.Models
+
+@{
+    ViewBag.Title = "UserView";
+}
+
+<h2>UserView</h2>
+<table class="table">
+    <tr>
+        <th>UserID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Address</th>
+        <th>Zipcode</th>
+        <th>Phonenumber</th>
+        <th>Password</th>
+        <th>RoleID</th>
+        <th>Username</th>
+    </tr>
+    @foreach (User _userinfo in Model.UserList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => _userinfo.UserID)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Firstname)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Lastname)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Address)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Zipcode)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Phonenumber)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Password)</td>
+            <td>@Html.DisplayFor(m => _userinfo.RoleID)</td>
+            <td>@Html.DisplayFor(m => _userinfo.Username)</td>
+
+
+
+
+
+            <td>@Html.ActionLink("Delete", "_DeleteUser", new { Delete_User = _userinfo.UserID })</td>
+            <td>@Html.ActionLink("Update", "UpdateUser", new { userToUpdate = _userinfo.UserID })</td>
+        </tr>
+    }
+</table>

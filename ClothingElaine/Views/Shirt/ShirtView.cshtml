@@ -1,0 +1,28 @@
+﻿@model ClothingElaine.Models.ShirtViewModel
+@using ClothingElaine.Models
+
+@{
+    ViewBag.Title = "ShirtView";
+}
+
+<h2>ShirtView</h2>
+<table class="table">
+    <tr>
+        <th>ShirtsID</th>
+        <th>Size</th>
+        <th>Color</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Shirt _shirtinfo in Model.ShirtList)
+    {
+            <tr>
+                <td>@Html.DisplayFor(m => _shirtinfo.ShirtsID)</td>
+                <td>@Html.DisplayFor(m => _shirtinfo.Size)</td>
+                <td>@Html.DisplayFor(m => _shirtinfo.Color)</td>
+                <td>@Html.DisplayFor(m => _shirtinfo.Price)</td>
+                <td>@Html.ActionLink("Delete", "_DeleteShirt", new { Delete_Shirt = _shirtinfo.ShirtsID })</td>
+                <td>@Html.ActionLink("Update", "UpdateShirt", new { shirtToUpdate = _shirtinfo })</td>
+            </tr>
+    }
+</table>
+

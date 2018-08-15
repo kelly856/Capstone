@@ -1,0 +1,27 @@
+﻿@model ClothingElaine.Models.PantViewModel
+@using ClothingElaine.Models
+
+@{
+    ViewBag.Title = "PantView";
+}
+
+<h2>PantView</h2>
+<table class="table">
+    <tr>
+        <th>PantsID</th>
+        <th>Size</th>
+        <th>Color</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Pant _pantinfo in Model.PantList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => _pantinfo.PantsID)</td>
+            <td>@Html.DisplayFor(m => _pantinfo.Size)</td>
+            <td>@Html.DisplayFor(m => _pantinfo.Color)</td>
+            <td>@Html.DisplayFor(m => _pantinfo.Price)</td>
+            <td>@Html.ActionLink("Delete", "_DeletePant", new { Delete_Pant = _pantinfo.PantsID })</td>
+            <td>@Html.ActionLink("Update", "UpdateShirt", new { shirtToUpdate = _pantinfo.PantsID })</td>
+        </tr>
+    }
+</table>

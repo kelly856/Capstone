@@ -1,0 +1,26 @@
+﻿@model ClothingElaine.Models.User
+@if (Session["RoleID"]!= null)
+
+{
+
+<h2>@Session["RoleID"]</h2>
+
+ }
+ else
+ {
+<h2>Login</h2>
+}
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.TextBoxFor(m => m.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.TextBoxFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="login" class="btn btn-default" />
+        </div>
+    </div>
+    //comment
+
+}
