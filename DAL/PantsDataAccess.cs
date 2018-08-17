@@ -109,7 +109,7 @@ namespace DAL
                 using (SqlConnection _connection = new SqlConnection(connectionString))
                 {
                     //This specifies what type of command
-                    using (SqlCommand _command = new SqlCommand("SP_Shirt_Create", _connection))
+                    using (SqlCommand _command = new SqlCommand("SP_Pant_Create", _connection))
                     {
                         //This specifies what type of command is being used
                         _command.CommandType = CommandType.StoredProcedure;
@@ -160,5 +160,47 @@ namespace DAL
 
             }
         }
+        public PantsDAO GetPantById(int PantsID)
+
+        {//Create a method that will get all my Books and place them in a list named _booklist
+            PantsDAO _pantReturn = new PantsDAO();
+
+            try
+            {
+                //Establishing the connection for the database 
+                using (SqlConnection _connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand _command = new SqlCommand("SP_Get_Pant_By_PantID",_connection))
+                    {
+                        //Establishing the command to pass to the database
+                        //and defining the command
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@PantsID", PantsID);
+                        //connect to the database
+                        _connection.Open();
+                        //Open the sql data reader
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            //Loop through the data sets or command and write each element
+                            //to the _bookToList using the book object
+                            while (_reader.Read())
+                            {
+                                
+                                _pantReturn.PantsID = _reader.GetInt32(0);
+                                _pantReturn.Size = _reader.GetInt32(1);
+                                _pantReturn.Color = _reader.GetString(2);
+                                _pantReturn.Price = _reader.GetDecimal(3);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return _pantReturn;
+        }
     }
 }
+

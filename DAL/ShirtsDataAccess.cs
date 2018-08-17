@@ -152,10 +152,12 @@ namespace DAL
             {
 
             }
-        }public List<ShirtsDAO> GetShirtById(int ShirtsID)
+        }
+
+    public ShirtsDAO GetShirtById(int ShirtsID)
 
     {//Create a method that will get all my Books and place them in a list named _booklist
-        List<ShirtsDAO> _shirtlist = new List<ShirtsDAO>();
+        ShirtsDAO _shirtReturn = new ShirtsDAO();
 
         try
         {
@@ -167,6 +169,7 @@ namespace DAL
                     //Establishing the command to pass to the database
                     //and defining the command
                     _command.CommandType = CommandType.StoredProcedure;
+                    _command.Parameters.AddWithValue("@ShirtsID", ShirtsID);
                     //connect to the database
                     _connection.Open();
                     //Open the sql data reader
@@ -176,12 +179,10 @@ namespace DAL
                         //to the _bookToList using the book object
                         while (_reader.Read())
                         {
-                            ShirtsDAO _shirtToList = new ShirtsDAO();
-                            _shirtToList.ShirtsID = _reader.GetInt32(0);
-                            _shirtToList.Size = _reader.GetString(1);
-                            _shirtToList.Color = _reader.GetString(2);
-                            _shirtToList.Price = _reader.GetDecimal(3);
-                            _shirtlist.Add(_shirtToList);
+                            _shirtReturn.ShirtsID = _reader.GetInt32(0);
+                            _shirtReturn.Size = _reader.GetString(1);
+                            _shirtReturn.Color = _reader.GetString(2);
+                            _shirtReturn.Price = _reader.GetDecimal(3);
                         }
                     }
                 }
@@ -191,7 +192,7 @@ namespace DAL
         {
 
         }
-        return _shirtlist;
+        return _shirtReturn;
     }
 }
 

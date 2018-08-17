@@ -17,7 +17,7 @@ namespace ClothingElaine.Controllers
         public ActionResult PantView()
         {
             PantViewModel PantViewModel = new PantViewModel();
-            PantViewModel.PantList = _Mapper.mapuser(PantsDataAccess.GetAllPants());
+            PantViewModel.PantList = _Mapper.Map(PantsDataAccess.GetAllPants());
 
             return View(PantViewModel);
         }
@@ -33,33 +33,33 @@ namespace ClothingElaine.Controllers
             if ((int)Session["RoleID"] == 1)
             {
 
-                PantsDataAccess.createPant(_Mapper.mappants(pantToCreate));
+                PantsDataAccess.createPant(_Mapper.Map(pantToCreate));
                 return RedirectToAction("PantView");
             }
             return View();
         }
+
         [HttpGet]
-        public ActionResult UpdatePant()
+        public ActionResult UpdatePant(int PantsID)
         {
-
-            {
-
-                return View();
-            }
-
+            Pant pant =_Mapper.Map(PantsDataAccess.GetPantById(PantsID));
+           
+            return View(pant);
 
         }
+
         [HttpPost]
         public ActionResult UpdatePant(Pant pantToUpdate)
         {
             if ((int)Session["RoleID"] == 1)
             {
-                PantsDataAccess.UpdatePant(_Mapper.Mappants(pantToUpdate));
-                return RedirectToAction("Login");
+                PantsDataAccess.UpdatePant(_Mapper.Map(pantToUpdate));
+                return RedirectToAction("PantView");
             }
 
             return View();
         }
+
         [HttpGet]
         public ActionResult _DeletePant(int Delete_Pant)
         {
@@ -70,7 +70,7 @@ namespace ClothingElaine.Controllers
                 PantsDataAccess.deletePant(_DeletePant);
 
             }
-            return RedirectToAction("ViewPant");
+            return RedirectToAction("PantView");
         }
 
     }

@@ -17,48 +17,41 @@ namespace ClothingElaine.Controllers
         public ActionResult ShirtView()
         {
             ShirtViewModel ShirtViewModel = new ShirtViewModel();
-            ShirtViewModel.ShirtList = _Mapper.MapListShirt(ShirtsDataAccess.GetAllShirts());
+            ShirtViewModel.ShirtList = _Mapper.Map(ShirtsDataAccess.GetAllShirts());
 
             return View(ShirtViewModel);
         }
         [HttpGet]
         public ActionResult CreateShirt()
         {
-            Shirt book = new Shirt();
-            return View();
+            Shirt shirt = new Shirt();
+            return View(shirt);
         }
         [HttpPost]
         public ActionResult CreateShirt(Shirt shirtToCreate)
         {
             if ((int)Session["RoleID"] == 1)
-            {
+            
 
-                ShirtsDataAccess.createShirt(_Mapper.mapshirts(shirtToCreate));
+                ShirtsDataAccess.createShirt(_Mapper.Map(shirtToCreate));
                 return RedirectToAction("ShirtView");
-            }
-            return View();
         }
         [HttpGet]
-        public ActionResult UpdateShirt(int ShirtID)
+        public ActionResult UpdateShirt(int ShirtsID)
         {
+            Shirt shirt = _Mapper.Map(ShirtsDataAccess.GetShirtById(ShirtsID));
+            
 
-            {
-
-                return View();
-            }
-
-
+                return View(shirt);
+            
         }
         [HttpPost]
         public ActionResult UpdateShirt(Shirt shirtToUpdate)
         {
-            if ((int)Session["RoleID"] == 1)
-            {
-                ShirtsDataAccess.UpdateShirt(_Mapper.mapshirt(shirtToUpdate));
-                return RedirectToAction("Login");
-            }
-
-            return View();
+         
+                ShirtsDataAccess.UpdateShirt(_Mapper.Map(shirtToUpdate));
+                return RedirectToAction("ShirtView");
+            
         }
         [HttpGet]
         public ActionResult _DeleteShirt(int Delete_Shirt)
@@ -70,7 +63,7 @@ namespace ClothingElaine.Controllers
                 ShirtsDataAccess.deleteShirt(_DeleteShirt);
 
             }
-            return RedirectToAction("ViewShirt");
+            return RedirectToAction("ShirtView");
         }
 
     }

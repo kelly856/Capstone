@@ -27,7 +27,7 @@ namespace ClothingElaine.Controllers
             if (ModelState.IsValid)
             {
                 // Run the login SP using my view model.
-                UsersDAO _user1 = _UserDataAccess._login(_Mapper.Map1(UserToMap));
+                UsersDAO _user1 = _UserDataAccess._login(_Mapper.Map(UserToMap));
 
                 // Put the _user1 values into the session variable.
                 Session["UserID"] = _user1.UserID;
@@ -52,16 +52,17 @@ namespace ClothingElaine.Controllers
         {
             {
 
-                _UserDataAccess._createUser(_Mapper.Map1(userCreate));
+                _UserDataAccess._createUser(_Mapper.Map(userCreate));
                 return RedirectToAction("Login");
             }
         }
         [HttpGet]
-        public ActionResult UpdateUser()
+        public ActionResult UpdateUser(int userID)
         {
+            User user = _Mapper.Map(UserDataAccess.GetUserByID(userID));
 
             {
-                return View();
+                return View(user);
             }
 
         }
@@ -70,8 +71,8 @@ namespace ClothingElaine.Controllers
         {
             if ((int)Session["RoleID"] == 1)
             {
-                _UserDataAccess.UpdateUser(_Mapper.Map1(userToUpdate));
-                return RedirectToAction("Login");
+                _UserDataAccess.UpdateUser(_Mapper.Map(userToUpdate));
+                return RedirectToAction("UserView");
             }
             return View();
         }
@@ -95,7 +96,7 @@ namespace ClothingElaine.Controllers
                 UserDataAccess.deleteUser(_DeleteUser1);
 
             }
-            return RedirectToAction("User");
+            return RedirectToAction("UserView");
         }
     }
 }

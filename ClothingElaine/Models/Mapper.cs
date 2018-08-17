@@ -14,16 +14,7 @@ namespace ClothingElaine.Models
             List<User> UserListToReturn = new List<User>();
             foreach (UsersDAO UserToMap in UserListToMap)
             {
-                User UserViewModel = new User();
-                UserViewModel.UserID = UserToMap.UserID;
-                UserViewModel.Firstname = UserToMap.Firstname;
-                UserViewModel.Lastname = UserToMap.Lastname;
-                UserViewModel.Address = UserToMap.Address;
-                UserViewModel.Zipcode = UserToMap.Zipcode;
-                UserViewModel.Phonenumber = UserToMap.Phonenumber;
-                UserViewModel.Password = UserToMap.Password;
-                UserViewModel.RoleID = UserToMap.RoleID;
-                UserViewModel.Username = UserToMap.Username;
+                User UserViewModel = Map(UserToMap);
                 UserListToReturn.Add(UserViewModel);
 
 
@@ -48,9 +39,9 @@ namespace ClothingElaine.Models
         }
 
 
-        public UsersDAO Map1(User userToUpdate)
+        public User Map(UsersDAO userToUpdate)
         {
-             UsersDAO _userToUpdate = new UsersDAO();
+             User _userToUpdate = new User();
             _userToUpdate.UserID = userToUpdate.UserID;
             _userToUpdate.Firstname = userToUpdate.Firstname;
             _userToUpdate.Lastname = userToUpdate.Lastname;
@@ -58,15 +49,16 @@ namespace ClothingElaine.Models
             _userToUpdate.Zipcode = userToUpdate.Zipcode;
             _userToUpdate.Phonenumber = userToUpdate.Phonenumber;
             _userToUpdate.Password = userToUpdate.Password;
-            _userToUpdate.RoleID = userToUpdate.RoleID;
             _userToUpdate.Username = userToUpdate.Username;
+            _userToUpdate.RoleID = userToUpdate.RoleID;
+           
 
             return _userToUpdate;
         }
 
 
 
-        public List<Shirt> MapListShirt(List<ShirtsDAO> ShirtListToMap)
+        public List<Shirt> Map(List<ShirtsDAO> ShirtListToMap)
         {
             List<Shirt> ShirtListToReturn = new List<Shirt>();
             foreach (ShirtsDAO ShirtToMap in ShirtListToMap)
@@ -83,7 +75,7 @@ namespace ClothingElaine.Models
             return ShirtListToReturn;
 
         }
-        public ShirtsDAO mapshirt(Shirt _shirtToUpdate)
+        public ShirtsDAO Map(Shirt _shirtToUpdate)
         {
              ShirtsDAO _ShirtToUpdate = new ShirtsDAO();
             _ShirtToUpdate.ShirtsID = _shirtToUpdate.ShirtsID;
@@ -92,9 +84,9 @@ namespace ClothingElaine.Models
             _ShirtToUpdate.Price = _shirtToUpdate.Price;
             return _ShirtToUpdate;
         }
-        public ShirtsDAO mapshirts(Shirt shirtToCreate)
+        public Shirt Map(ShirtsDAO shirtToCreate)
         {
-            ShirtsDAO daShirtToCreate = new ShirtsDAO();
+            Shirt daShirtToCreate = new Shirt();
             daShirtToCreate.ShirtsID = shirtToCreate.ShirtsID;
             daShirtToCreate.Size = shirtToCreate.Size;
             daShirtToCreate.Color = shirtToCreate.Color;
@@ -102,7 +94,7 @@ namespace ClothingElaine.Models
 
             return daShirtToCreate;
         }
-        public List<Pant> mapuser(List<PantsDAO> _PantListToMap)
+        public List<Pant> Map(List<PantsDAO> _PantListToMap)
         {
             List<Pant> _PantListToReturn = new List<Pant>();
             foreach (PantsDAO _PantToMap in _PantListToMap)
@@ -119,7 +111,7 @@ namespace ClothingElaine.Models
             return _PantListToReturn;
 
         }
-        public PantsDAO mappants(Pant pantToCreate)
+        public PantsDAO Map(Pant pantToCreate)
         {
             PantsDAO daPantToCreate = new PantsDAO();
             daPantToCreate.PantsID = pantToCreate.PantsID;
@@ -129,9 +121,9 @@ namespace ClothingElaine.Models
 
             return daPantToCreate;
         }
-        public PantsDAO Mappants(Pant _pantToUpdate)
+        public Pant Map(PantsDAO _pantToUpdate)
         {
-            PantsDAO _PantToUpdate = new PantsDAO();
+            Pant _PantToUpdate = new Pant();
             _PantToUpdate.PantsID = _pantToUpdate.PantsID;
             _PantToUpdate.Size = _pantToUpdate.Size;
             _PantToUpdate.Color = _pantToUpdate.Color;

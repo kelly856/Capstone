@@ -21,7 +21,7 @@
                 <td>@Html.DisplayFor(m => _shirtinfo.Color)</td>
                 <td>@Html.DisplayFor(m => _shirtinfo.Price)</td>
                 <td>@Html.ActionLink("Delete", "_DeleteShirt", new { Delete_Shirt = _shirtinfo.ShirtsID })</td>
-                <td>@Html.ActionLink("Update", "UpdateShirt", new { shirtToUpdate = _shirtinfo })</td>
+                <td>@Html.ActionLink("Update", "UpdateShirt", new { ShirtsID = _shirtinfo.ShirtsID })</td>
             </tr>
     }
 </table>
