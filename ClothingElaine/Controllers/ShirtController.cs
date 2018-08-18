@@ -25,13 +25,11 @@ namespace ClothingElaine.Controllers
         public ActionResult CreateShirt()
         {
             Shirt shirt = new Shirt();
-            return View(shirt);
+            return View();
         }
         [HttpPost]
         public ActionResult CreateShirt(Shirt shirtToCreate)
         {
-            if ((int)Session["RoleID"] == 1)
-            
 
                 ShirtsDataAccess.createShirt(_Mapper.Map(shirtToCreate));
                 return RedirectToAction("ShirtView");

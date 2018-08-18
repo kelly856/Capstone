@@ -28,15 +28,15 @@ namespace ClothingElaine.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreatePant(Pant pantToCreate)
+        public ActionResult createPant(Pant pantToCreate)
         {
-            if ((int)Session["RoleID"] == 1)
+            
             {
 
                 PantsDataAccess.createPant(_Mapper.Map(pantToCreate));
                 return RedirectToAction("PantView");
             }
-            return View();
+            
         }
 
         [HttpGet]

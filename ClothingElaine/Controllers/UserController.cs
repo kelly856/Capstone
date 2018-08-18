@@ -53,7 +53,7 @@ namespace ClothingElaine.Controllers
             {
 
                 _UserDataAccess._createUser(_Mapper.Map(userCreate));
-                return RedirectToAction("Login");
+                return RedirectToAction("MultiView","Home");
             }
         }
         [HttpGet]

@@ -101,7 +101,7 @@ namespace DAL
             }
             return _pantlist;
         }
-        public void createPant(PantsDAO pantToCreate)
+        public PantsDAO createPant(PantsDAO pantToCreate)
         {
             try
             {
@@ -120,10 +120,20 @@ namespace DAL
                         _command.Parameters.AddWithValue("@Price", pantToCreate.Price);
                         //Here is where the connection is opened
                         _connection.Open();
-                        //This will excute the command
-                        _command.ExecuteNonQuery();
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            while (_reader.Read())
+                            {
+                                pantToCreate.PantsID = _reader.GetInt32(0);
+                                pantToCreate.Size = _reader.GetInt32(1);
+                                pantToCreate.Color = _reader.GetString(2);
+                                pantToCreate.Price = _reader.GetDecimal(3);
+                            }
+                            //This will excute the command
+                            _command.ExecuteNonQuery();
 
-                        _connection.Close();
+                            _connection.Close();
+                        }
                     }
                 }
             }
@@ -131,6 +141,10 @@ namespace DAL
             {
 
             }
+            return pantToCreate;
+            
+            
+            
         }
         public void UpdatePant(ShirtsDAO pantToUpdate)
         {
