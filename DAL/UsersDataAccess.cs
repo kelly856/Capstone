@@ -28,7 +28,6 @@ namespace DAL
                     {
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@Username", _userLogin.Username);
-                        _command.Parameters.AddWithValue("@Password", _userLogin.Password);
                         _connection.Open();
                         using (SqlDataReader _reader = _command.ExecuteReader())
                         {

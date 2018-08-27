@@ -53,10 +53,6 @@ namespace DAL
             return yes;
         }
 
-        public void UpdatePant(PantsDAO pantsDAO)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<PantsDAO> GetAllPants()
 
@@ -103,6 +99,7 @@ namespace DAL
         }
         public PantsDAO createPant(PantsDAO pantToCreate)
         {
+            PantsDAO createPant = new PantsDAO();
             try
             {
                 //This is creating a connection to the database 
@@ -114,7 +111,6 @@ namespace DAL
                         //This specifies what type of command is being used
                         _command.CommandType = CommandType.StoredProcedure;
                         //Here is where the Values will be passed to the command
-                        _command.Parameters.AddWithValue("PantsID", pantToCreate.PantsID);
                         _command.Parameters.AddWithValue("@Size", pantToCreate.Size);
                         _command.Parameters.AddWithValue("@Color", pantToCreate.Color);
                         _command.Parameters.AddWithValue("@Price", pantToCreate.Price);
@@ -124,7 +120,6 @@ namespace DAL
                         {
                             while (_reader.Read())
                             {
-                                pantToCreate.PantsID = _reader.GetInt32(0);
                                 pantToCreate.Size = _reader.GetInt32(1);
                                 pantToCreate.Color = _reader.GetString(2);
                                 pantToCreate.Price = _reader.GetDecimal(3);
@@ -146,7 +141,7 @@ namespace DAL
             
             
         }
-        public void UpdatePant(ShirtsDAO pantToUpdate)
+        public void UpdatePant(PantsDAO pantToUpdate)
         {
             try
             {
@@ -158,16 +153,26 @@ namespace DAL
                     //This specifies what type of command is being used
                     _command.CommandType = CommandType.StoredProcedure;
                     //Here is where the Values will be passed to the command
-                    _command.Parameters.AddWithValue("@PantsID", pantToUpdate.ShirtsID);
+                    _command.Parameters.AddWithValue("@PantsID", pantToUpdate.PantsID);
                     _command.Parameters.AddWithValue("@Size", pantToUpdate.Size);
                     _command.Parameters.AddWithValue("@Color", pantToUpdate.Color);
                     _command.Parameters.AddWithValue("@Price", pantToUpdate.Price);
                     //Here is where the connection is opened
                     _connection.Open();
-                    //This will excute the command
-                    _command.ExecuteNonQuery();
+                    using (SqlDataReader _reader = _command.ExecuteReader())
+                    {
+                        while (_reader.Read())
+                        {
+                            pantToUpdate.PantsID = _reader.GetInt32(0);
+                            pantToUpdate.Size = _reader.GetInt32(1);
+                            pantToUpdate.Color = _reader.GetString(2);
+                            pantToUpdate.Price = _reader.GetDecimal(3);
+                        }
+                        //This will excute the command
+                        _command.ExecuteNonQuery();
+                    }
                     _connection.Close();
-                }
+                } 
             }
             catch
             {

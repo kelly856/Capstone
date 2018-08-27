@@ -42,7 +42,7 @@ namespace ClothingElaine.Controllers
         [HttpGet]
         public ActionResult UpdatePant(int PantsID)
         {
-            Pant pant =_Mapper.Map(PantsDataAccess.GetPantById(PantsID));
+            Pant pant = _Mapper.Map(PantsDataAccess.GetPantById(PantsID));
            
             return View(pant);
 
@@ -54,7 +54,7 @@ namespace ClothingElaine.Controllers
             if ((int)Session["RoleID"] == 1)
             {
                 PantsDataAccess.UpdatePant(_Mapper.Map(pantToUpdate));
-                return RedirectToAction("PantView");
+                return RedirectToAction("ViewPant");
             }
 
             return View();

@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartDataAccess.cs" />
-    <Compile Include="Objects\CheckoutDAO.cs" />
+    <Compile Include="CartsDataAccess.cs" />
+    <Compile Include="Objects\CartDAO.cs" />
     <Compile Include="Objects\PantsDAO.cs" />
     <Compile Include="Objects\RoleDAO.cs" />
     <Compile Include="Objects\ShirtsDAO.cs" />

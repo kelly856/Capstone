@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility Logger", "Utility Logger\Utility Logger.csproj", "{37CFCD01-CD6E-44A4-8EAD-E3671869AE7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL1", "BLL1\BLL1.csproj", "{A3DBE7CD-48C8-4CB9-B082-A175788CC405}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL1\BLL.csproj", "{A3DBE7CD-48C8-4CB9-B082-A175788CC405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -155,13 +155,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Carts.cs" />
+    <Compile Include="Models\CartViewModelcs.cs" />
     <Compile Include="Models\Mapper.cs" />
     <Compile Include="Models\Pant.cs" />
     <Compile Include="Models\PantViewModel.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Shirt.cs" />
     <Compile Include="Models\ShirtViewModel.cs" />
+    <Compile Include="Models\TransactionHistory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,10 +218,10 @@
     <Content Include="Views\Shirt\UpdateShirt.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\MultiView.cshtml" />
+    <Content Include="Views\Cart\CartView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -235,6 +237,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL1\BLL.csproj">
+      <Project>{a3dbe7cd-48c8-4cb9-b082-a175788cc405}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{077c389c-8788-45d1-9d3d-e0e43210b6c5}</Project>
       <Name>DAL</Name>

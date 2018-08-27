@@ -87,13 +87,13 @@ namespace ClothingElaine.Controllers
             return View(UserViewModel);
         }
         [HttpGet]
-        public ActionResult _DeleteUser1(int Delete_User)
+        public ActionResult _DeleteUser(int Delete_User)
         {
             if ((int)Session["RoleID"] == 1)
             {
-                UsersDAO _DeleteUser1 = new UsersDAO();
-                _DeleteUser1.UserID = Delete_User;
-                UserDataAccess.deleteUser(_DeleteUser1);
+                UsersDAO _DeleteUser = new UsersDAO();
+                _DeleteUser.UserID = Delete_User;
+                UserDataAccess.deleteUser(_DeleteUser);
 
             }
             return RedirectToAction("UserView");

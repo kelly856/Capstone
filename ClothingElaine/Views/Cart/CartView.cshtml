@@ -1,0 +1,36 @@
+﻿@model ClothingElaine.Models.CartViewModel
+@using ClothingElaine.Models
+
+@{
+    ViewBag.Title = "CartView";
+}
+
+<h2>UserView</h2>
+<table class="table">
+    <tr>
+        <th>CartID</th>
+        <th>PantsID</th>
+        <th>ShirtsID</th>
+        <th>UserID</th>
+        <th>ItemQuanity</th>
+        <th>TotalPrice</th>
+    </tr>
+    @foreach (Carts _cartinfo in Model.CartList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => _cartinfo.CartID)</td>
+            <td>@Html.DisplayFor(m => _cartinfo.PantsID)</td>
+            <td>@Html.DisplayFor(m => _cartinfo.ShirtsID)</td>
+            <td>@Html.DisplayFor(m => _cartinfo.UserID)</td>
+            <td>@Html.DisplayFor(m => _cartinfo.ItemQuanity)</td>
+            <td>@Html.DisplayFor(m => _cartinfo.TotalPrice)</td>
+    }
+
+
+
+
+            <td>@Html.ActionLink("Delete", "_DeleteCart", new { Delete_Cart = _cartinfo.CartID })</td>
+            <td>@Html.ActionLink("Update", "UpdateCart", new { CartID = _cartinfo.CartID })</td>
+        </tr>
+    }
+</table>
