@@ -11,6 +11,6 @@ namespace ClothingElaine.Models
         public int PantsID { get; set; }
         public int Size { get; set; }
         public string Color { get; set; }
-        public decimal Price { get; set; }
+        public int PantPrice { get; set; }
     }
 }

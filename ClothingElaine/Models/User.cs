@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using DAL.Objects;
@@ -8,7 +9,9 @@ namespace ClothingElaine.Models
 {
     public class User
     {
+
         public int UserID { get; set; }
+        [Required]
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Address { get; set; }

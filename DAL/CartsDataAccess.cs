@@ -7,6 +7,7 @@ using DAL.Objects;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using Utility_Logger;
 
 namespace DAL
 {
@@ -43,10 +44,11 @@ namespace DAL
                                 _cartToList.PantsID = _reader.GetInt32(1);
                                 _cartToList.ShirtsID = _reader.GetInt32(2);
                                 _cartToList.UserID = _reader.GetInt32(3);
-                                _cartToList.ItemQuanity = _reader.GetInt32(4);
-                                _cartToList.PantPrice = _reader.GetInt32(5);
-                                _cartToList.ShirtPrice = _reader.GetInt32(6);
-                                _cartToList.TotalPrice = _reader.GetInt32(7);
+                                _cartToList.ShirtQuanity = _reader.GetInt32(4);
+                                _cartToList.PantQuanity = _reader.GetInt32(5);
+                                _cartToList.PantPrice = _reader.GetInt32(6);
+                                _cartToList.ShirtPrice = _reader.GetInt32(7);
+                                _cartToList.TotalPrice = _reader.GetInt32(8);
 
                                 _cartlist.Add(_cartToList);
 
@@ -56,8 +58,10 @@ namespace DAL
                 }
             }
 
-            catch
+            catch (Exception error)
             {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _cartlist;
         }
@@ -86,8 +90,10 @@ namespace DAL
                         }
                     }
                 }
-                catch
+                catch (Exception error)
                 {
+                    Error_Logger Log = new Error_Logger();
+                    Log.Errorlogger(error);
                 }
                 return yes;
             }
@@ -111,8 +117,11 @@ namespace DAL
                     _command.Parameters.AddWithValue("@PantsID", cartToUpdate.PantsID);
                     _command.Parameters.AddWithValue("@ShirtsID", cartToUpdate.ShirtsID);
                     _command.Parameters.AddWithValue("@UserID", cartToUpdate.UserID);
-                    _command.Parameters.AddWithValue("@ItemQuanity", cartToUpdate.ItemQuanity);
+                    _command.Parameters.AddWithValue("@ShirtQuanity", cartToUpdate.ShirtQuanity);
+                    _command.Parameters.AddWithValue("@PantQuanity", cartToUpdate.PantQuanity);
                     _command.Parameters.AddWithValue("@TotalPrice", cartToUpdate.TotalPrice);
+                    _command.Parameters.AddWithValue("@ShirtPrice", cartToUpdate.ShirtPrice);
+                    _command.Parameters.AddWithValue("@PantPrice", cartToUpdate.PantPrice);
 
                     //Here is where the connection is opened
                     _connection.Open();
@@ -124,8 +133,11 @@ namespace DAL
                             cartToUpdate.PantsID = _reader.GetInt32(1);
                             cartToUpdate.ShirtsID = _reader.GetInt32(2);
                             cartToUpdate.UserID = _reader.GetInt32(3);
-                            cartToUpdate.ItemQuanity = _reader.GetInt32(4);
-                            cartToUpdate.TotalPrice = _reader.GetInt32(5);
+                            cartToUpdate.ShirtQuanity = _reader.GetInt32(4);
+                            cartToUpdate.PantQuanity = _reader.GetInt32(5);
+                            cartToUpdate.TotalPrice = _reader.GetInt32(6);
+                            cartToUpdate.ShirtPrice = _reader.GetInt32(7);
+                            cartToUpdate.PantPrice = _reader.GetInt32(8);
                         }
                         _connection.Close();
                     }
@@ -135,9 +147,10 @@ namespace DAL
                     _connection.Close();
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
         }
         public CartDAO _createCart(CartDAO _cartCreate)
@@ -156,19 +169,25 @@ namespace DAL
                         _command.Parameters.AddWithValue("@PantsID", _cartCreate.PantsID);
                         _command.Parameters.AddWithValue("@ShirtsID", _cartCreate.ShirtsID);
                         _command.Parameters.AddWithValue("@UserID", _cartCreate.UserID);
-                        _command.Parameters.AddWithValue("@ItemQuanity", _cartCreate.ItemQuanity);
+                        _command.Parameters.AddWithValue("@ShirtQuanity", _cartCreate.ShirtQuanity);
+                        _command.Parameters.AddWithValue("@PantQuanity", _cartCreate.PantQuanity);
                         _command.Parameters.AddWithValue("@TotalPrice", _cartCreate.TotalPrice);
+                        _command.Parameters.AddWithValue("@ShirtPrice", _cartCreate.ShirtPrice);
+                        _command.Parameters.AddWithValue("@PantPrice", _cartCreate.PantPrice);
                         _connection.Open();
                         using (SqlDataReader _reader = _command.ExecuteReader())
                         {
                             while (_reader.Read())
                             {
-                                _createCart.CartID = _reader.GetInt32(2);
-                                _createCart.PantsID = _reader.GetInt32(3);
-                                _createCart.ShirtsID = _reader.GetInt32(6);
-                                _createCart.UserID = _reader.GetInt32(9);
-                                _createCart.ItemQuanity = _reader.GetInt32(7);
-                                _createCart.TotalPrice = _reader.GetInt32(1);
+                                _createCart.CartID = _reader.GetInt32(0);
+                                _createCart.PantsID = _reader.GetInt32(1);
+                                _createCart.ShirtsID = _reader.GetInt32(2);
+                                _createCart.UserID = _reader.GetInt32(3);
+                                _createCart.ShirtQuanity = _reader.GetInt32(4);
+                                _createCart.PantQuanity = _reader.GetInt32(5);
+                                _createCart.TotalPrice = _reader.GetInt32(6);
+                                _createCart.ShirtPrice = _reader.GetInt32(6);
+                                _createCart.PantPrice = _reader.GetInt32(6);
                             }
                             _connection.Close();
                         }
@@ -176,9 +195,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _createCart;
         }
@@ -212,16 +232,21 @@ namespace DAL
                                 _cartReturn.PantsID = _reader.GetInt32(1);
                                 _cartReturn.ShirtsID = _reader.GetInt32(2);
                                 _cartReturn.UserID = _reader.GetInt32(3);
-                                _cartReturn.ItemQuanity = _reader.GetInt32(4);
+                                _cartReturn.ShirtQuanity = _reader.GetInt32(4);
+                                _cartReturn.PantQuanity = _reader.GetInt32(4);
                                 _cartReturn.TotalPrice = _reader.GetInt32(5);
+                                _cartReturn.ShirtPrice = _reader.GetInt32(5);
+                                _cartReturn.PantPrice = _reader.GetInt32(5);
+
                             }
                         }
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _cartReturn;
         }

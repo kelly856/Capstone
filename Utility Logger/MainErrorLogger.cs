@@ -26,7 +26,7 @@ namespace Utility_Logger
             message += Environment.NewLine;
             message += "----------------------------------------------";
             message += Environment.NewLine;
-            using (StreamWriter writer = new StreamWriter("C:\\Users\\Onshore\\Desktop\\CapstoneErroeLogger", true))
+            using (StreamWriter writer = new StreamWriter("C:\\Users\\Onshore\\Desktop\\CapstoneErrorLogger", true))
             {
                 writer.WriteLine(message);
             }

@@ -35,12 +35,12 @@ namespace ClothingElaine.Controllers
                 return RedirectToAction("ShirtView");
         }
         [HttpGet]
-        public ActionResult UpdateShirt(int ShirtsID)
+        public ActionResult UpdateShirt()
         {
-            Shirt shirt = _Mapper.Map(ShirtsDataAccess.GetShirtById(ShirtsID));
+            
             
 
-                return View(shirt);
+                return View();
             
         }
         [HttpPost]

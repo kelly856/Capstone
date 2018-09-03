@@ -71,7 +71,7 @@ namespace ClothingElaine.Models
                 ShirtViewModel.ShirtsID = ShirtToMap.ShirtsID;
                 ShirtViewModel.Size = ShirtToMap.Size;
                 ShirtViewModel.Color = ShirtToMap.Color;
-                ShirtViewModel.Price = ShirtToMap.Price;
+                ShirtViewModel.ShirtPrice = ShirtToMap.ShirtPrice;
                 ShirtListToReturn.Add(ShirtViewModel);
 
 
@@ -85,7 +85,7 @@ namespace ClothingElaine.Models
             _ShirtToUpdate.ShirtsID = _shirtToUpdate.ShirtsID;
             _ShirtToUpdate.Size = _shirtToUpdate.Size;
             _ShirtToUpdate.Color = _shirtToUpdate.Color;
-            _ShirtToUpdate.Price = _shirtToUpdate.Price;
+            _ShirtToUpdate.ShirtPrice = _shirtToUpdate.ShirtPrice;
             return _ShirtToUpdate;
         }
         public Shirt Map(ShirtsDAO shirtToCreate)
@@ -94,7 +94,7 @@ namespace ClothingElaine.Models
             daShirtToCreate.ShirtsID = shirtToCreate.ShirtsID;
             daShirtToCreate.Size = shirtToCreate.Size;
             daShirtToCreate.Color = shirtToCreate.Color;
-            daShirtToCreate.Price = shirtToCreate.Price;
+            daShirtToCreate.ShirtPrice = shirtToCreate.ShirtPrice;
 
             return daShirtToCreate;
         }
@@ -107,7 +107,7 @@ namespace ClothingElaine.Models
                 PantViewModel.PantsID = _PantToMap.PantsID;
                 PantViewModel.Size = _PantToMap.Size;
                 PantViewModel.Color = _PantToMap.Color;
-                PantViewModel.Price = _PantToMap.Price;
+                PantViewModel.PantPrice = _PantToMap.PantPrice;
                 _PantListToReturn.Add(PantViewModel);
 
 
@@ -121,7 +121,7 @@ namespace ClothingElaine.Models
             daPantToCreate.PantsID = pantToCreate.PantsID;
             daPantToCreate.Size = pantToCreate.Size;
             daPantToCreate.Color = pantToCreate.Color;
-            daPantToCreate.Price = pantToCreate.Price;
+            daPantToCreate.PantPrice = pantToCreate.PantPrice;
 
             return daPantToCreate;
         }
@@ -131,16 +131,16 @@ namespace ClothingElaine.Models
             _PantToUpdate.PantsID = _pantToUpdate.PantsID;
             _PantToUpdate.Size = _pantToUpdate.Size;
             _PantToUpdate.Color = _pantToUpdate.Color;
-            _PantToUpdate.Price = _pantToUpdate.Price;
+            _PantToUpdate.PantPrice = _pantToUpdate.PantPrice;
             return _PantToUpdate;
         }
 
-        public List<Carts> Mapcart(List<CartDAO> CartListToMap)
+        public List<Carts> Map(List<CartDAO> CartListToMap)
         {
             List<Carts> CartListToReturn = new List<Carts>();
             foreach (CartDAO CartToMap in CartListToMap)
             {
-                Carts CartViewModel = Mapcart(CartToMap);
+                Carts CartViewModel = Map(CartToMap);
                 CartListToReturn.Add(CartViewModel);
 
 
@@ -148,38 +148,41 @@ namespace ClothingElaine.Models
             return CartListToReturn;
 
         }
-        public CartDAO Mapcart(Carts cartToCreate)
+        public CartDAO Map(Carts cartToCreate)
         {
             CartDAO daCartToCreate = new CartDAO();
             daCartToCreate.CartID = cartToCreate.UserID;
             daCartToCreate.PantsID = cartToCreate.PantsID;
             daCartToCreate.ShirtsID = cartToCreate.ShirtsID;
             daCartToCreate.UserID = cartToCreate.UserID;
-            daCartToCreate.ItemQuanity = cartToCreate.ItemQuanity;
-            daCartToCreate.PantPrice = cartToCreate.PantPrice;
+            daCartToCreate.ShirtQuanity = cartToCreate.ShirtQuanity;
+            daCartToCreate.PantQuanity = cartToCreate.PantQuanity;
             daCartToCreate.ShirtPrice = cartToCreate.ShirtPrice;
+            daCartToCreate.PantPrice = cartToCreate.PantPrice;
             daCartToCreate.TotalPrice = cartToCreate.TotalPrice;
 
             return daCartToCreate;
         }
 
 
-        public Carts Mapcart(CartDAO cartToUpdate)
+        public Carts Map(CartDAO cartToUpdate)
         {
             Carts _cartToUpdate = new Carts();
             _cartToUpdate.UserID = cartToUpdate.UserID;
             _cartToUpdate.PantsID = cartToUpdate.PantsID;
             _cartToUpdate.ShirtsID = cartToUpdate.ShirtsID;
-            _cartToUpdate.ItemQuanity = cartToUpdate.ItemQuanity;
-            _cartToUpdate.PantPrice = cartToUpdate.PantPrice;
+            _cartToUpdate.ShirtQuanity = cartToUpdate.ShirtQuanity;
+            _cartToUpdate.PantQuanity = cartToUpdate.PantQuanity;
             _cartToUpdate.ShirtPrice = cartToUpdate.ShirtPrice;
+            _cartToUpdate.PantPrice = cartToUpdate.PantPrice;
             _cartToUpdate.TotalPrice = cartToUpdate.TotalPrice;
+            
 
 
             return _cartToUpdate;
         }
 
-        public CartsBLO LogicCartMap(Carts _SingleCartLogic)
+        public CartsBLO Mapcarts(Carts _SingleCartLogic)
         {
             CartsBLO LogicToReturn = new CartsBLO();
             {
@@ -188,13 +191,16 @@ namespace ClothingElaine.Models
                 _cartLogicView.PantsID = _SingleCartLogic.PantsID;
                 _cartLogicView.ShirtsID = _SingleCartLogic.ShirtsID;
                 _cartLogicView.UserID = _SingleCartLogic.UserID;
-                _cartLogicView.ItemQuanity = _SingleCartLogic.ItemQuanity;
+                _cartLogicView.ShirtQuanity = _SingleCartLogic.ShirtQuanity;
+                _cartLogicView.PantQuanity = _SingleCartLogic.PantQuanity;
                 _cartLogicView.TotalPrice = _SingleCartLogic.TotalPrice;
+                _cartLogicView.ShirtPrice = _SingleCartLogic.ShirtPrice;
+                _cartLogicView.PantPrice = _SingleCartLogic.PantPrice;
             }
             return LogicToReturn;
 
         }
-        public Carts SelectCartLogic(CartsBLO _SelectCartLogic)
+        public Carts Map(CartsBLO _SelectCartLogic)
         {
             Carts LogicToReturn = new Carts();
             {
@@ -203,8 +209,11 @@ namespace ClothingElaine.Models
                 _cartLogicView.PantsID = _SelectCartLogic.PantsID;
                 _cartLogicView.ShirtsID = _SelectCartLogic.ShirtsID;
                 _cartLogicView.UserID = _SelectCartLogic.UserID;
-                _cartLogicView.ItemQuanity = _SelectCartLogic.ItemQuanity;
+                _cartLogicView.ShirtQuanity = _SelectCartLogic.ShirtQuanity;
+                _cartLogicView.PantQuanity = _SelectCartLogic.PantQuanity;
                 _cartLogicView.TotalPrice = _SelectCartLogic.TotalPrice;
+                _cartLogicView.ShirtPrice = _SelectCartLogic.ShirtPrice;
+                _cartLogicView.PantPrice = _SelectCartLogic.PantPrice;
             }
             return LogicToReturn;
         }
@@ -219,8 +228,12 @@ namespace ClothingElaine.Models
                 _CartViewModel.PantsID = _CartToMap.PantsID;
                 _CartViewModel.ShirtsID = _CartToMap.ShirtsID;
                 _CartViewModel.UserID = _CartToMap.UserID;
-                _CartViewModel.ItemQuanity = _CartToMap.ItemQuanity;
+                _CartViewModel.ShirtQuanity = _CartToMap.ShirtQuanity;
+                _CartViewModel.PantQuanity = _CartToMap.PantQuanity;
                 _CartViewModel.TotalPrice = _CartToMap.TotalPrice;
+                _CartViewModel.ShirtPrice = _CartToMap.ShirtPrice;
+                _CartViewModel.PantPrice = _CartToMap.PantPrice;
+
                 _CartListToReturn.Add(_CartViewModel);
 
 

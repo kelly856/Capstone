@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Configuration;
 using DAL.Objects;
+using Utility_Logger;
 
 
 namespace DAL
@@ -46,9 +47,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
 
             return _loginUser;
@@ -92,11 +94,11 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
-
             return _createUser;
         }
         public void UpdateUser(UsersDAO userToUpdate)
@@ -146,9 +148,10 @@ namespace DAL
                     _connection.Close();
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
 
 
@@ -195,9 +198,10 @@ namespace DAL
                 }
             }
 
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _userlist;
         }
@@ -225,9 +229,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             if (yes == true)
             {
@@ -276,9 +281,10 @@ namespace DAL
                 }
             }
 
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _userReturn;
         }

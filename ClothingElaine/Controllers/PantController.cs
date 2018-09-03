@@ -40,11 +40,11 @@ namespace ClothingElaine.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdatePant(int PantsID)
+        public ActionResult UpdatePant()
         {
-            Pant pant = _Mapper.Map(PantsDataAccess.GetPantById(PantsID));
+            
            
-            return View(pant);
+            return View();
 
         }
 

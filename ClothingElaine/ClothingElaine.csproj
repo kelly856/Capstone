@@ -173,10 +173,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bgImage.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -219,6 +221,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\MultiView.cshtml" />
     <Content Include="Views\Cart\CartView.cshtml" />
+    <Content Include="Views\User\RegisterUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,6 +247,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{077c389c-8788-45d1-9d3d-e0e43210b6c5}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility Logger\Utility Logger.csproj">
+      <Project>{37cfcd01-cd6e-44a4-8ead-e3671869ae7c}</Project>
+      <Name>Utility Logger</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

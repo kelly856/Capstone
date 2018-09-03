@@ -7,6 +7,8 @@ using System.Configuration;
 using DAL.Objects;
 using System.Data;
 using System.Data.SqlClient;
+using Utility_Logger;
+
 namespace DAL
 {
     class RoleDataAccess
@@ -48,9 +50,10 @@ namespace DAL
                 }
             }
 
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _rolelist;
         }

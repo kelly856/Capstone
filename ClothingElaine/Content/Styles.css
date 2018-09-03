@@ -1,0 +1,33 @@
+﻿body {
+    background-color: #4F8173;
+    background-image: url("/Images/bgImage.jpg");
+}
+
+.navbarColor {
+    background-color: dimgray;
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #4F8173;
+}
+
+a {
+    color:white;
+}
+
+p {
+    color: white;
+}
+
+h1, h2, h3 {
+    color: white;
+}

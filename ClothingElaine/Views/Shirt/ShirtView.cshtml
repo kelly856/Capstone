@@ -8,7 +8,7 @@
 <h2>ShirtView</h2>
 <table class="table">
     <tr>
-        <th>ShirtsID</th>
+        <th></th>
         <th>Size</th>
         <th>Color</th>
         <th>Price</th>
@@ -16,10 +16,10 @@
     @foreach (Shirt _shirtinfo in Model.ShirtList)
     {
             <tr>
-                <td>@Html.DisplayFor(m => _shirtinfo.ShirtsID)</td>
+                <td>@Html.HiddenFor(m => _shirtinfo.ShirtsID)</td>
                 <td>@Html.DisplayFor(m => _shirtinfo.Size)</td>
                 <td>@Html.DisplayFor(m => _shirtinfo.Color)</td>
-                <td>@Html.DisplayFor(m => _shirtinfo.Price)</td>
+                <td>@Html.DisplayFor(m => _shirtinfo.ShirtPrice)</td>
                 <td>@Html.ActionLink("Delete", "_DeleteShirt", new { Delete_Shirt = _shirtinfo.ShirtsID })</td>
                 <td>@Html.ActionLink("Update", "UpdateShirt", new { ShirtsID = _shirtinfo.ShirtsID })</td>
             </tr>

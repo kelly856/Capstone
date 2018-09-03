@@ -17,9 +17,9 @@ namespace ClothingElaine.Controllers
         public ActionResult CartView()
         {
             CartViewModel CartViewModel = new CartViewModel();
-            CartViewModel.CartList = _Mapper.Mapcart(CartsDataAccess.GetAllCarts());
+            CartViewModel.CartList = _Mapper.Map(CartsDataAccess.GetAllCarts());
 
-            return View(CartViewModel);
+            return View(CartViewModel.CartList);
         }
         [HttpGet]
         public ActionResult CreateCart()
@@ -33,7 +33,7 @@ namespace ClothingElaine.Controllers
 
             {
 
-                CartsDataAccess._createCart(_Mapper.Mapcart(cartToCreate));
+                CartsDataAccess._createCart(_Mapper.Map(cartToCreate));
                 return RedirectToAction("CartView");
             }
 
@@ -42,7 +42,7 @@ namespace ClothingElaine.Controllers
         [HttpGet]
         public ActionResult UpdateCart(int CartID)
         {
-            Carts cart = _Mapper.Mapcart(CartsDataAccess.GetCartById(CartID));
+            Carts cart = _Mapper.Map(CartsDataAccess.GetCartById(CartID));
 
             return View(cart);
 
@@ -53,7 +53,7 @@ namespace ClothingElaine.Controllers
         {
             if ((int)Session["RoleID"] == 1)
             {
-                CartsDataAccess.UpdateCart(_Mapper.Mapcart(cartToUpdate));
+                CartsDataAccess.UpdateCart(_Mapper.Map(cartToUpdate));
                 return RedirectToAction("CartView");
             }
 

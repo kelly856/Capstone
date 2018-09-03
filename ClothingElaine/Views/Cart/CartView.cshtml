@@ -1,36 +1,46 @@
-﻿@model ClothingElaine.Models.CartViewModel
+﻿@model ClothingElaine.Models.Cart
+
 @using ClothingElaine.Models
 
 @{
     ViewBag.Title = "CartView";
 }
+<br />
+<i class="fas fa-shopping-cart" style="display: inline;font-size: 32px;"></i>
+<br />
+<br />
 
-<h2>UserView</h2>
 <table class="table">
     <tr>
-        <th>CartID</th>
-        <th>PantsID</th>
-        <th>ShirtsID</th>
-        <th>UserID</th>
-        <th>ItemQuanity</th>
-        <th>TotalPrice</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Shirt Quanity</th>
+        <th>Pant Quanity</th>
+        <th>Total Price</th>
+        <th>Pant Price</th>
+        <th>Shirt Price</th>
     </tr>
     @foreach (Carts _cartinfo in Model.CartList)
     {
-        <tr>
-            <td>@Html.DisplayFor(m => _cartinfo.CartID)</td>
-            <td>@Html.DisplayFor(m => _cartinfo.PantsID)</td>
-            <td>@Html.DisplayFor(m => _cartinfo.ShirtsID)</td>
-            <td>@Html.DisplayFor(m => _cartinfo.UserID)</td>
-            <td>@Html.DisplayFor(m => _cartinfo.ItemQuanity)</td>
-            <td>@Html.DisplayFor(m => _cartinfo.TotalPrice)</td>
-    }
+    <tr>
+        <td>@Html.HiddenFor(m => _cartinfo.CartID)</td>
+        <td>@Html.HiddenFor(m => _cartinfo.PantsID)</td>
+        <td>@Html.HiddenFor(m => _cartinfo.ShirtsID)</td>
+        <td>@Html.HiddenFor(m => _cartinfo.UserID)</td>
+        <td>@Html.DisplayFor(m => _cartinfo.ShirtQuanity)</td>
+        <td>@Html.DisplayFor(m => _cartinfo.PantQuanity)</td>
+        <td>@Html.DisplayFor(m => _cartinfo.TotalPrice)</td>
+        <td>@Html.DisplayFor(m => _cartinfo.PantPrice)</td>
+        <td>@Html.DisplayFor(m => _cartinfo.ShirtPrice)</td>
+        }
 
 
 
 
-            <td>@Html.ActionLink("Delete", "_DeleteCart", new { Delete_Cart = _cartinfo.CartID })</td>
-            <td>@Html.ActionLink("Update", "UpdateCart", new { CartID = _cartinfo.CartID })</td>
-        </tr>
+        <td>@Html.ActionLink("Delete", "_DeleteCart", new { Delete_Cart = _cartinfo.CartID })</td>
+        <td>@Html.ActionLink("Update", "UpdateCart", new { CartID = _cartinfo.CartID })</td>
+    </tr>
     }
 </table>

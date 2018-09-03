@@ -1,14 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@model ClothingElaine.Models.User
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Clothing Elaine</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body style="background-image:url(/Images/bgImage.jpg)">
+    <div class="navbar navbar-inverse navbar-fixed-top navbarColor">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,14 +20,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "MultiView", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Clothing Elaine", "MultiView", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "MultiView", "Home")</li>
+                    <li>@Html.ActionLink("Home", "MultiView", "Home", new { })</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                {
+
+                    @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(m => m.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="login" class="btn btn-default" />
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -31,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Clothing Elaine</p>
         </footer>
     </div>
 

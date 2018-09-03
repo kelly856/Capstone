@@ -8,7 +8,7 @@
 <h2>UserView</h2>
 <table class="table">
     <tr>
-        <th>UserID</th>
+        <th></th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Address</th>
@@ -20,7 +20,7 @@
     @foreach (User _userinfo in Model.UserList)
     {
         <tr>
-            <td>@Html.DisplayFor(m => _userinfo.UserID)</td>
+            <td>@Html.HiddenFor(m => _userinfo.UserID)</td>
             <td>@Html.DisplayFor(m => _userinfo.Firstname)</td>
             <td>@Html.DisplayFor(m => _userinfo.Lastname)</td>
             <td>@Html.DisplayFor(m => _userinfo.Address)</td>

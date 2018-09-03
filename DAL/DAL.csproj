@@ -56,5 +56,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility Logger\Utility Logger.csproj">
+      <Project>{37cfcd01-cd6e-44a4-8ead-e3671869ae7c}</Project>
+      <Name>Utility Logger</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

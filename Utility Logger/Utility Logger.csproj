@@ -43,15 +43,5 @@
     <Compile Include="MainErrorLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClothingElaine\ClothingElaine.csproj">
-      <Project>{61b20daa-01bd-4d29-9b59-545a8f48998a}</Project>
-      <Name>ClothingElaine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{077c389c-8788-45d1-9d3d-e0e43210b6c5}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

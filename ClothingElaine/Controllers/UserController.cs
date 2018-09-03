@@ -41,21 +41,7 @@ namespace ClothingElaine.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
-        [HttpGet]
-        public ActionResult CreateUser()
-        {
-            User user = new User();
-            return View();
-        }
-        [HttpPost]
-        public ActionResult CreateUser(User userCreate)
-        {
-            {
-
-                _UserDataAccess._createUser(_Mapper.Map(userCreate));
-                return RedirectToAction("MultiView","Home");
-            }
-        }
+        
         [HttpGet]
         public ActionResult UpdateUser(int userID)
         {
@@ -98,5 +84,21 @@ namespace ClothingElaine.Controllers
             }
             return RedirectToAction("UserView");
         }
+        [HttpGet]
+        public ActionResult RegisterUser()
+        {
+            User user = new User();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterUser(User userRegister)
+        {
+            {
+
+                _UserDataAccess._createUser(_Mapper.Map(userRegister));
+                return RedirectToAction("MultiView", "Home");
+            }
+        }
     }
+
 }

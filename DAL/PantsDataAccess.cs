@@ -7,6 +7,7 @@ using System.Configuration;
 using DAL.Objects;
 using System.Data.SqlClient;
 using System.Data;
+using Utility_Logger;
 
 namespace DAL
 {
@@ -38,9 +39,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             if (yes == true)
             {
@@ -83,7 +85,7 @@ namespace DAL
                                 _pantToList.PantsID = _reader.GetInt32(0);
                                 _pantToList.Size = _reader.GetInt32(1);
                                 _pantToList.Color = _reader.GetString(2);
-                                _pantToList.Price = _reader.GetDecimal(3);
+                                _pantToList.PantPrice = _reader.GetInt32(3);
                                 _pantlist.Add(_pantToList);
 
                             }
@@ -91,9 +93,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _pantlist;
         }
@@ -113,7 +116,7 @@ namespace DAL
                         //Here is where the Values will be passed to the command
                         _command.Parameters.AddWithValue("@Size", pantToCreate.Size);
                         _command.Parameters.AddWithValue("@Color", pantToCreate.Color);
-                        _command.Parameters.AddWithValue("@Price", pantToCreate.Price);
+                        _command.Parameters.AddWithValue("@PantPrice", pantToCreate.PantPrice);
                         //Here is where the connection is opened
                         _connection.Open();
                         using (SqlDataReader _reader = _command.ExecuteReader())
@@ -122,7 +125,7 @@ namespace DAL
                             {
                                 pantToCreate.Size = _reader.GetInt32(1);
                                 pantToCreate.Color = _reader.GetString(2);
-                                pantToCreate.Price = _reader.GetDecimal(3);
+                                pantToCreate.PantPrice = _reader.GetInt32(3);
                             }
                             //This will excute the command
                             _command.ExecuteNonQuery();
@@ -132,9 +135,10 @@ namespace DAL
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return pantToCreate;
             
@@ -156,7 +160,7 @@ namespace DAL
                     _command.Parameters.AddWithValue("@PantsID", pantToUpdate.PantsID);
                     _command.Parameters.AddWithValue("@Size", pantToUpdate.Size);
                     _command.Parameters.AddWithValue("@Color", pantToUpdate.Color);
-                    _command.Parameters.AddWithValue("@Price", pantToUpdate.Price);
+                    _command.Parameters.AddWithValue("@PantPrice", pantToUpdate.PantPrice);
                     //Here is where the connection is opened
                     _connection.Open();
                     using (SqlDataReader _reader = _command.ExecuteReader())
@@ -166,7 +170,7 @@ namespace DAL
                             pantToUpdate.PantsID = _reader.GetInt32(0);
                             pantToUpdate.Size = _reader.GetInt32(1);
                             pantToUpdate.Color = _reader.GetString(2);
-                            pantToUpdate.Price = _reader.GetDecimal(3);
+                            pantToUpdate.PantPrice = _reader.GetInt32(3);
                         }
                         //This will excute the command
                         _command.ExecuteNonQuery();
@@ -174,9 +178,10 @@ namespace DAL
                     _connection.Close();
                 } 
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
         }
         public PantsDAO GetPantById(int PantsID)
@@ -208,15 +213,16 @@ namespace DAL
                                 _pantReturn.PantsID = _reader.GetInt32(0);
                                 _pantReturn.Size = _reader.GetInt32(1);
                                 _pantReturn.Color = _reader.GetString(2);
-                                _pantReturn.Price = _reader.GetDecimal(3);
+                                _pantReturn.PantPrice = _reader.GetInt32(3);
                             }
                         }
                     }
                 }
             }
-            catch
+            catch (Exception error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(error);
             }
             return _pantReturn;
         }
